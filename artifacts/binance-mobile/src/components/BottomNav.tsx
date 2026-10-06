@@ -11,7 +11,7 @@ const navItems = [
 
 export const BottomNav = () => {
   return (
-    <nav aria-label="Primary navigation" className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-background/95 backdrop-blur-xl">
+    <nav aria-label="Primary navigation" className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-background/95 pb-[env(safe-area-inset-bottom,0px)] backdrop-blur-xl">
       <div className="flex items-center justify-around px-1 pt-1 max-w-[560px] mx-auto">
         {navItems.map((item) => (
           <NavLink
@@ -27,12 +27,6 @@ export const BottomNav = () => {
             <span className="text-[10px] font-medium leading-none">{item.label}</span>
           </NavLink>
         ))}
-      </div>
-      <div
-        aria-hidden="true"
-        className="flex h-[calc(14px+env(safe-area-inset-bottom,0px))] items-center justify-center bg-[#101216] pb-[env(safe-area-inset-bottom,0px)]"
-      >
-        <span className="h-1 w-[36vw] max-w-[138px] rounded-full bg-[#737780]" />
       </div>
     </nav>
   );
