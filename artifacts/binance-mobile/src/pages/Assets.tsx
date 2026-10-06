@@ -321,7 +321,7 @@ const Assets = () => {
           </div>
         </Card>
 
-        <Card className="overflow-hidden rounded-xl border-border/60 bg-card px-3 pt-2 shadow-none">
+        <Card className="overflow-hidden rounded-xl border-border/60 bg-card px-3 pt-0 shadow-none">
           <div className="flex items-center justify-between">
             <span className="text-[12px] text-muted-foreground">Balance</span>
             <button type="button" aria-label="Balance list options" className="flex min-h-[44px] min-w-[44px] items-center justify-center text-muted-foreground">
@@ -332,7 +332,7 @@ const Assets = () => {
             { account: "spot", label: "USDT", detail: "TetherUS", balance: spotBalance, Logo: UsdtLogo },
             { account: "funding", label: "GRAM", detail: "Gram", badge: "Swapped", balance: fundingBalance, Logo: GramLogo },
           ].map(({ account, label, detail, badge, balance, Logo }, index) => (
-            <div key={account} className={`flex items-start justify-between gap-2 py-1 ${index === 0 ? "border-b border-border/70" : ""}`}>
+            <div key={account} className={`flex items-start justify-between gap-2 py-3 ${index === 0 ? "border-b border-border/70" : ""}`}>
               <div className="flex min-w-0 items-center gap-2 pt-1">
                 <Logo className="h-7 w-7 shrink-0" />
                 <div className="min-w-0">
