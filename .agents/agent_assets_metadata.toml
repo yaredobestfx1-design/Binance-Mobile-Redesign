@@ -1,0 +1,16 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "SQFOrVSaFN6V-I4PFT20N"
+uri = "file://artifacts/binance-mobile/public/icon-512.png"
+type = "image"
+title = "Binance app icon"
+description = "Black launcher tile with the centered yellow Binance mark, matched to your One UI reference."
+logical_id = "83c5e2b0-512d-4f87-90d9-206dcb0251a9"
+content_hash = "sha256:3c12c5e099075b7c5f1d8a606258402028dac7354b4b939c98354cd24f84b91f"
+size = 6212
+mtime_ms = 1791287951194
+storage_uri = "gcs://replit-rams-assets-reed/rams/assets/repl:4c389c3a-ca3b-45d2-8d03-afc1c39485bb/83c5e2b0-512d-4f87-90d9-206dcb0251a9/5c906c47-c65e-407c-9e80-ca3cbaefc218"
+storage_version_token = "1791288003808257"
+content_type = "image/png"
