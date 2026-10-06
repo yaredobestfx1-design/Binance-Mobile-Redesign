@@ -14,8 +14,7 @@ export const UsdtLogo = ({ className = "h-8 w-8" }: AssetTokenLogoProps) => (
 
 export const GramLogo = ({ className = "h-8 w-8" }: AssetTokenLogoProps) => (
   <svg className={className} viewBox="0 0 32 32" fill="none" aria-hidden="true">
-    <circle cx="16" cy="16" r="16" fill="#278BD8" />
-    <path d="m16 5.4 3.1 7.5 7.5 3.1-7.5 3.1-3.1 7.5-3.1-7.5-7.5-3.1 7.5-3.1L16 5.4Z" fill="white" />
-    <path d="m16 12.3 1.5 3.6 3.6 1.5-3.6 1.5-1.5 3.6-1.5-3.6-3.6-1.5 3.6-1.5 1.5-3.6Z" fill="#278BD8" />
+    <path d="M16 1.5 30.5 16 16 30.5 1.5 16 16 1.5Z" fill="#278BD8" />
+    <path d="m16 8 2.5 5.5L24 16l-5.5 2.5L16 24l-2.5-5.5L8 16l5.5-2.5L16 8Z" fill="white" />
   </svg>
 );

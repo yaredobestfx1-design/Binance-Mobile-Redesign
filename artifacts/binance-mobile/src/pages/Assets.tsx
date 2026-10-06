@@ -321,8 +321,8 @@ const Assets = () => {
           </div>
         </Card>
 
-        <Card className="overflow-hidden rounded-xl border-border/60 bg-card px-3 pt-3 shadow-none">
-          <div className="mb-1 flex items-center justify-between">
+        <Card className="overflow-hidden rounded-xl border-border/60 bg-card px-3 pt-2 shadow-none">
+          <div className="flex items-center justify-between">
             <span className="text-[12px] text-muted-foreground">Balance</span>
             <button type="button" aria-label="Balance list options" className="flex min-h-[44px] min-w-[44px] items-center justify-center text-muted-foreground">
               <List className="h-[16px] w-[16px]" />
@@ -332,9 +332,9 @@ const Assets = () => {
             { account: "spot", label: "USDT", detail: "TetherUS", balance: spotBalance, Logo: UsdtLogo },
             { account: "funding", label: "GRAM", detail: "Gram", badge: "Swapped", balance: fundingBalance, Logo: GramLogo },
           ].map(({ account, label, detail, badge, balance, Logo }, index) => (
-            <div key={account} className={`flex items-center justify-between gap-2 py-3 ${index === 0 ? "border-b border-border/70" : ""}`}>
-              <div className="flex min-w-0 items-center gap-2">
-                <Logo className="h-8 w-8 shrink-0" />
+            <div key={account} className={`flex items-start justify-between gap-2 py-1 ${index === 0 ? "border-b border-border/70" : ""}`}>
+              <div className="flex min-w-0 items-center gap-2 pt-1">
+                <Logo className="h-7 w-7 shrink-0" />
                 <div className="min-w-0">
                   <div className="flex items-center gap-1">
                     <span className="text-[12px] font-semibold text-foreground">{label}</span>
@@ -343,12 +343,18 @@ const Assets = () => {
                   <div className="truncate text-[10px] text-muted-foreground">{detail}</div>
                 </div>
               </div>
-              <div className="flex shrink-0 flex-col items-end gap-1">
+              <div className="flex shrink-0 flex-col items-end">
                 <span className="text-[12px] font-semibold text-foreground">${formatBalance(balance)}</span>
                 <span className="text-[10px] text-muted-foreground">${formatBalance(balance)}</span>
                 <div className="flex gap-1">
-                  <button type="button" className="min-h-[44px] rounded bg-secondary px-3 text-[10px] text-foreground">Earn</button>
-                  <button type="button" className="min-h-[44px] rounded bg-secondary px-3 text-[10px] text-foreground">Trade</button>
+                  <button type="button" className="relative flex min-h-[44px] min-w-[68px] items-center justify-center px-2 text-[10px] text-foreground">
+                    <span aria-hidden="true" className="absolute inset-x-0 top-[9px] h-[26px] rounded bg-secondary" />
+                    <span className="relative z-10">Earn</span>
+                  </button>
+                  <button type="button" className="relative flex min-h-[44px] min-w-[68px] items-center justify-center px-2 text-[10px] text-foreground">
+                    <span aria-hidden="true" className="absolute inset-x-0 top-[9px] h-[26px] rounded bg-secondary" />
+                    <span className="relative z-10">Trade</span>
+                  </button>
                 </div>
               </div>
             </div>
