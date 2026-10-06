@@ -30,7 +30,7 @@ const Index = () => {
 
   return (
     <div className="mobile-page text-foreground">
-      <TopBar />
+      <TopBar variant="home" />
       
       <PullToRefresh onRefresh={handleRefresh}>
         <main className="page-content">
@@ -38,33 +38,33 @@ const Index = () => {
           <SearchBar />
 
           {/* Balance Section */}
-          <div className="px-4 pt-3 pb-5 space-y-3">
+          <div className="space-y-0 px-3 pb-2 pt-0.5">
             <div className="flex items-center gap-2">
               <Button 
                 variant="ghost" 
-                className="min-h-[44px] text-[12px] text-muted-foreground h-auto p-0 hover:bg-transparent"
+                className="h-auto min-h-[28px] p-0 text-[11px] text-muted-foreground hover:bg-transparent"
                 onClick={() => setShowBalance(!showBalance)}
               >
-                Est. Total Value (USD)
-                <Eye className="ml-1 h-4 w-4" />
+                Est. Total Value(USD)
+                <Eye className="ml-1 h-[14px] w-[14px]" />
               </Button>
             </div>
             
             {/* Balance Display with Add Funds */}
             <div className="flex items-center justify-between">
               <div className="flex items-baseline gap-2">
-                <span className="font-[Space_Grotesk] text-[32px] leading-none font-bold tracking-[-.04em]">
+                <span className="font-[Space_Grotesk] text-[30px] font-bold leading-none tracking-[-.04em]">
                   {showBalance ? `$${formatBalance(totalBalance)}` : "****"}
                 </span>
-                <span className="text-sm text-muted-foreground">USD</span>
+                <span className="text-[12px] text-muted-foreground">USD</span>
               </div>
-              <Button className="h-11 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold rounded-lg px-4 text-[13px]">
+              <Button className="h-10 rounded-lg bg-primary px-4 text-[12px] font-semibold text-primary-foreground hover:bg-primary/90">
                 Add Funds
               </Button>
             </div>
 
             {/* Today's PNL */}
-            <div className="flex items-center gap-2 text-[12px]">
+            <div className="flex items-center gap-1.5 text-[11px]">
               <span className="text-muted-foreground">Today's PNL</span>
               <span className="text-[#0ECB81] font-medium">
                 +$0.002016 (+2.95%)
@@ -79,17 +79,15 @@ const Index = () => {
           {/* Trading Countdown */}
           <TradingCountdown />
 
-          {/* Chat Preview */}
-          <ChatPreview />
-
-          {/* Featured Coins */}
-          <FeaturedCoins />
-
           {/* Crypto List */}
           <CryptoList />
 
           {/* News Feed */}
           <NewsFeed />
+
+          {/* Keep the existing Chat and featured live-coin modules available below Discover. */}
+          <ChatPreview />
+          <FeaturedCoins />
         </main>
       </PullToRefresh>
 

@@ -22,7 +22,7 @@ export const BottomNav = () => {
             activeClassName="text-primary"
           >
             {item.customIcon ? (
-              <img src={item.customIcon} alt="" className="h-[19px] w-[19px]" />
+            <img src={item.customIcon} alt="" className="home-nav-mark h-[19px] w-[19px]" />
             ) : (
               item.icon && <item.icon className="h-[19px] w-[19px]" strokeWidth={1.8} />
             )}

@@ -42,7 +42,7 @@ const formatTimeAgo = (dateString: string): string => {
 
 const NEWSDATA_API_KEY = "pub_7595601faef246b4b46a203b7115ebe0";
 
-const newsTabs = ["Discover", "Following", "Campaign", "Announcements"];
+const newsTabs = ["Discover", "Following", "Stocks", "Campaign", "Smart Money", "Announcements"];
 
 export const NewsFeed = () => {
   const [activeTab, setActiveTab] = useState("Discover");
@@ -84,14 +84,14 @@ export const NewsFeed = () => {
   }, []);
 
   return (
-    <div className="mt-4">
+    <div className="mt-1">
       {/* News Tabs */}
-      <div className="flex items-center gap-4 px-4 border-b border-border overflow-x-auto scrollbar-hide">
+      <div className="flex items-center gap-5 overflow-x-auto border-b border-border px-3 scrollbar-hide">
         {newsTabs.map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`py-3 text-sm font-medium whitespace-nowrap transition-colors relative ${
+            className={`relative min-h-[44px] whitespace-nowrap py-3 text-[13px] font-medium transition-colors ${
               activeTab === tab
                 ? "text-foreground"
                 : "text-muted-foreground hover:text-foreground"

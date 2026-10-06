@@ -1,13 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import { Flame } from "lucide-react";
+import { useState } from "react";
 
 interface CryptoData {
   id: string;
   symbol: string;
   name: string;
+  image: string;
   current_price: number;
   price_change_percentage_24h: number;
 }
+
+const marketTabs = ["Favorites", "Hot", "TradFi", "Alpha", "New", "Gainers", "Losers", "24h"];
 
 const fetchCryptoData = async (): Promise<CryptoData[]> => {
   const response = await fetch(
@@ -18,36 +22,67 @@ const fetchCryptoData = async (): Promise<CryptoData[]> => {
 };
 
 export const CryptoList = () => {
+  const [activeMarketTab, setActiveMarketTab] = useState("Hot");
+  const [activeCategory, setActiveCategory] = useState("Crypto");
+  const [showAll, setShowAll] = useState(false);
   const { data: cryptos, isLoading } = useQuery({
     queryKey: ["cryptoList"],
     queryFn: fetchCryptoData,
     refetchInterval: 30000, // Refetch every 30 seconds
   });
 
-  if (isLoading) {
-    return (
-      <div className="space-y-3 px-4">
-        {[...Array(5)].map((_, i) => (
-          <div key={i} className="flex items-center justify-between py-3">
-            <div className="h-10 w-20 bg-muted rounded animate-pulse" />
-            <div className="h-10 w-24 bg-muted rounded animate-pulse" />
-            <div className="h-8 w-16 bg-muted rounded animate-pulse" />
-          </div>
-        ))}
-      </div>
-    );
-  }
+  const visibleCryptos = showAll ? cryptos : cryptos?.slice(0, 5);
 
   return (
-    <div className="pb-20">
-      <div className="grid grid-cols-[minmax(0,1fr)_76px_68px] gap-2 px-4 py-3 text-[10px] text-muted-foreground border-b border-border">
-        <span>Name</span>
-        <span>Last Price</span>
-        <span>24h chg%</span>
+    <section className="market-section">
+      <div className="flex gap-5 overflow-x-auto px-3 pb-1 pt-2">
+        {marketTabs.map((tab) => (
+          <button
+            type="button"
+            key={tab}
+            onClick={() => setActiveMarketTab(tab)}
+            className={`relative min-h-[44px] shrink-0 whitespace-nowrap text-[13px] font-medium ${
+              activeMarketTab === tab ? "text-foreground" : "text-muted-foreground"
+            }`}
+          >
+            {tab}
+            {activeMarketTab === tab && <span className="absolute bottom-0 left-1/2 h-[3px] w-3 -translate-x-1/2 rounded-full bg-primary" />}
+          </button>
+        ))}
       </div>
-      
-      <div className="divide-y divide-border">
-        {cryptos?.map((crypto) => {
+
+      <div className="flex items-center gap-4 px-3 pb-2 pt-0.5">
+        {["Crypto", "Futures", "Stocks"].map((category) => (
+          <button
+            type="button"
+            key={category}
+            onClick={() => setActiveCategory(category)}
+            className={`min-h-[44px] text-[11px] font-semibold ${
+              activeCategory === category ? "text-foreground" : "text-muted-foreground"
+            }`}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-[minmax(0,1fr)_82px_68px] gap-1 border-b border-border/70 px-3 py-1.5 text-[10px] text-muted-foreground">
+        <span>Name</span>
+        <span className="text-right">Last Price</span>
+        <span className="text-center">24h chg%</span>
+      </div>
+
+      <div className="divide-y divide-border/70">
+        {isLoading ? (
+          [...Array(5)].map((_, index) => (
+            <div key={index} className="grid grid-cols-[minmax(0,1fr)_82px_68px] items-center gap-1 px-3 py-1">
+              <div className="h-7 w-28 animate-pulse rounded bg-muted" />
+              <div className="ml-auto h-7 w-16 animate-pulse rounded bg-muted" />
+              <div className="h-7 w-16 animate-pulse rounded bg-muted" />
+            </div>
+          ))
+        ) : (
+          visibleCryptos?.map((crypto) => {
           const priceChange = crypto.price_change_percentage_24h ?? 0;
           const isPositive = priceChange > 0;
           const bgColor = isPositive ? "bg-[#0ECB81]" : "bg-[#F6465D]";
@@ -55,23 +90,33 @@ export const CryptoList = () => {
           return (
             <div
               key={crypto.id}
-              className="grid grid-cols-[minmax(0,1fr)_76px_68px] gap-2 px-4 py-3 items-center hover:bg-muted/30 transition-colors"
+              className="grid grid-cols-[minmax(0,1fr)_82px_68px] items-center gap-1 px-3 py-0.5 transition-colors hover:bg-muted/30"
             >
-              <div className="flex items-center gap-2">
-                <span className="truncate text-[13px] font-semibold uppercase">
-                  {crypto.symbol}
-                </span>
-                <Flame className="h-4 w-4 text-primary" />
+              <div className="flex min-w-0 items-center gap-2">
+                {crypto.image ? (
+                  <img src={crypto.image} alt="" className="h-6 w-6 shrink-0 rounded-full bg-secondary" />
+                ) : (
+                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-secondary text-[11px] font-bold text-primary">
+                    {crypto.symbol.slice(0, 1).toUpperCase()}
+                  </div>
+                )}
+                <div className="min-w-0">
+                  <div className="flex items-center gap-1">
+                    <span className="truncate text-[13px] font-semibold uppercase">{crypto.symbol}</span>
+                    {["bitcoin", "ethereum", "binancecoin"].includes(crypto.id) && <Flame className="h-3 w-3 shrink-0 text-primary" />}
+                  </div>
+                  <div className="truncate text-[10px] text-muted-foreground">{crypto.name}</div>
+                </div>
               </div>
               
               <div className="text-right">
-                <div className="text-base font-semibold">
+                <div className="text-[12px] font-semibold">
                   {crypto.current_price.toLocaleString('en-US', {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   })}
                 </div>
-                <div className="text-xs text-muted-foreground">
+                <div className="text-[10px] text-muted-foreground">
                   ${crypto.current_price.toLocaleString('en-US', {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
@@ -80,15 +125,25 @@ export const CryptoList = () => {
               </div>
               
               <div
-                className={`${bgColor} text-white px-1 py-1 rounded text-[11px] font-semibold min-w-[68px] text-center`}
+                className={`${bgColor} min-w-[64px] rounded px-1 py-1.5 text-center text-[10px] font-semibold text-white`}
               >
                 {isPositive ? "+" : ""}
                 {priceChange.toFixed(2)}%
               </div>
             </div>
           );
-        })}
+          })
+        )}
       </div>
-    </div>
+      {!isLoading && (cryptos?.length ?? 0) > 5 && (
+        <button
+          type="button"
+          onClick={() => setShowAll((value) => !value)}
+          className="min-h-[44px] w-full text-[11px] text-muted-foreground"
+        >
+          {showAll ? "Show Less" : "View More"}
+        </button>
+      )}
+    </section>
   );
 };

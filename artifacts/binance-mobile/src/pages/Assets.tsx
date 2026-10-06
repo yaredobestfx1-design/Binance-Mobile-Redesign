@@ -1,6 +1,22 @@
 import { BottomNav } from "@/components/BottomNav";
 import { Button } from "@/components/ui/button";
-import { Eye, Plus, Minus, MoreVertical, Sun, Moon } from "lucide-react";
+import {
+  ArrowDownToLine,
+  ArrowLeftRight,
+  ArrowUpFromLine,
+  ChevronDown,
+  Coins,
+  Eye,
+  List,
+  Minus,
+  MoreVertical,
+  Moon,
+  PiggyBank,
+  Plus,
+  SlidersHorizontal,
+  Sun,
+  Wallet,
+} from "lucide-react";
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -27,9 +43,8 @@ const Assets = () => {
   const [showBalance, setShowBalance] = useState(true);
   const [showAdjustment, setShowAdjustment] = useState(false);
   const [adjustTarget, setAdjustTarget] = useState<"spot" | "funding">("spot");
-  const [activeTab, setActiveTab] = useState<"exchange" | "wallet">("exchange");
-  const [activeAccountTab, setActiveAccountTab] = useState<"crypto" | "account">("account");
-  const [viewTab, setViewTab] = useState<"overview" | "spot" | "funding">("overview");
+  const [viewTab, setViewTab] = useState<"overview" | "spot" | "funding" | "earn">("overview");
+  const spotAllocation = totalBalance > 0 ? Math.min(100, Math.max(0, (spotBalance / totalBalance) * 100)) : 0;
 
   const formatBalance = (value: number) => {
     return value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -113,87 +128,85 @@ const Assets = () => {
   return (
     <div className="mobile-page text-foreground">
       <Toaster />
-      {/* Top Tabs - No dots/menu visible */}
-      <div className="px-4 pt-3">
-        <div className="flex gap-1 rounded-xl bg-secondary/70 p-1 max-w-[250px] mx-auto">
+      <div
+        role="tablist"
+        aria-label="Asset account"
+        className="assets-tabs flex gap-5 overflow-x-auto border-b border-border/70 px-3"
+      >
+        {([
+          ["overview", "Overview"],
+          ["spot", "Spot"],
+          ["funding", "Funding"],
+          ["earn", "Earn"],
+        ] as const).map(([tab, label]) => (
           <button
-            onClick={() => setActiveTab("exchange")}
-            className={`flex-1 min-h-[42px] rounded-lg text-[13px] font-semibold transition-colors ${
-              activeTab === "exchange" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground"
+            type="button"
+            role="tab"
+            aria-selected={viewTab === tab}
+            key={tab}
+            onClick={() => setViewTab(tab)}
+            className={`relative min-h-[48px] shrink-0 text-[14px] font-medium ${
+              viewTab === tab ? "text-foreground" : "text-muted-foreground"
             }`}
           >
-            Exchange
+            {label}
+            {viewTab === tab && <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary" />}
           </button>
-          <button
-            onClick={() => setActiveTab("wallet")}
-            className={`flex-1 min-h-[42px] rounded-lg text-[13px] font-semibold transition-colors ${
-              activeTab === "wallet" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground"
-            }`}
-          >
-            Wallet
-          </button>
-        </div>
+        ))}
       </div>
 
-      {/* View Tabs */}
-      <div className="flex gap-6 px-4 pt-5 pb-3 border-b border-border/70">
-        <button
-          onClick={() => setViewTab("overview")}
-          className={`min-h-[42px] text-[14px] font-semibold pb-1 ${
-            viewTab === "overview" ? "text-foreground border-b-2 border-primary" : "text-muted-foreground"
-          }`}
-        >
-          Overview
-        </button>
-        <button
-          onClick={() => setViewTab("spot")}
-          className={`min-h-[42px] text-[14px] font-semibold pb-1 ${
-            viewTab === "spot" ? "text-foreground border-b-2 border-primary" : "text-muted-foreground"
-          }`}
-        >
-          Spot
-        </button>
-        <button
-          onClick={() => setViewTab("funding")}
-          className={`min-h-[42px] text-[14px] font-semibold pb-1 ${
-            viewTab === "funding" ? "text-foreground border-b-2 border-primary" : "text-muted-foreground"
-          }`}
-        >
-          Funding
-        </button>
-      </div>
-
-      <main className="page-content px-4">
-        {/* Balance Section */}
-        <div className="space-y-2 mb-5 pt-3">
+      <main className="page-content px-3">
+        <section className="assets-summary relative mb-3 pt-3">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-[12px] text-muted-foreground">
+            <div className="flex items-center gap-1.5 text-[12px] text-muted-foreground">
               <span>Est. Total Value</span>
-              <button aria-label={showBalance ? "Hide balance" : "Show balance"} className="min-h-[44px] min-w-[44px] flex items-center justify-center" onClick={() => setShowBalance(!showBalance)}>
-                <Eye className="h-4 w-4" />
+              <button
+                type="button"
+                aria-label={showBalance ? "Hide balance" : "Show balance"}
+                className="flex min-h-[44px] min-w-[44px] items-center justify-center"
+                onClick={() => setShowBalance(!showBalance)}
+              >
+                <Eye className="h-[15px] w-[15px]" />
               </button>
             </div>
             <button
+              type="button"
               onClick={() => setShowAdjustment(!showAdjustment)}
-              className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full hover:bg-muted/50 transition-colors"
+              className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted/50"
               title="Custom balance adjustment"
+              aria-label="Balance and theme controls"
             >
-              <MoreVertical className="h-5 w-5 text-muted-foreground" />
+              <MoreVertical className="h-[18px] w-[18px]" />
             </button>
           </div>
-          <div className="flex items-baseline gap-2">
-            <span className="font-[Space_Grotesk] text-[34px] leading-tight font-bold tracking-[-.045em]">
-              {showBalance ? `$${formatBalance(totalBalance)}` : "****"}
-            </span>
-            <span className="text-sm text-muted-foreground">USD</span>
+          <div className="flex items-center justify-between gap-2">
+            <div className="min-w-0">
+              <div className="flex items-baseline gap-1.5">
+                <span className="font-[Space_Grotesk] text-[30px] font-bold leading-none tracking-[-.045em]">
+                  {showBalance ? `$${formatBalance(totalBalance)}` : "****"}
+                </span>
+                <span className="text-[12px] text-muted-foreground">USD</span>
+                <ChevronDown className="h-3 w-3 text-muted-foreground" />
+              </div>
+              <div className="mt-2 flex items-center gap-1.5 text-[11px]">
+                <span className="text-muted-foreground">Today's PNL</span>
+                <span className="text-negative">
+                  -${Math.abs(todayPnl).toFixed(6)} ({todayPnlPercent.toFixed(2)}%)
+                </span>
+                <ChevronDown className="h-3 w-3 text-muted-foreground" />
+              </div>
+            </div>
+            <svg aria-hidden="true" className="h-12 w-[76px] shrink-0" viewBox="0 0 100 42" fill="none">
+              <polyline
+                points="1,22 9,24 15,17 21,20 28,18 34,27 40,24 47,23 54,27 60,20 66,22 72,17 78,19 84,15 91,18 99,7"
+                stroke="#F0B90B"
+                strokeWidth="2.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </div>
-          <div className="flex items-center gap-2 text-[12px]">
-            <span className="text-muted-foreground">Today's PNL</span>
-            <span className="text-negative">
-              -${Math.abs(todayPnl).toFixed(6)}({todayPnlPercent.toFixed(2)}%)
-            </span>
-          </div>
-        </div>
+        </section>
 
         {/* Custom Balance Adjustment - Hidden by default */}
         {showAdjustment && (
@@ -275,50 +288,72 @@ const Assets = () => {
           </Card>
         )}
 
-        {/* Action Buttons */}
-        <div className="grid grid-cols-3 gap-2 mb-6">
-          <Button className="h-11 px-2 text-[12px] bg-primary text-primary-foreground hover:bg-primary/90">
-            Add Funds
-          </Button>
-          <Button variant="secondary" className="h-11 px-2 text-[12px]">Send</Button>
-          <Button variant="secondary" className="h-11 px-2 text-[12px]">Transfer</Button>
+        <div className="mb-3 grid grid-cols-4 gap-2">
+          {[
+            { label: "Add Funds", icon: ArrowDownToLine },
+            { label: "Send", icon: ArrowUpFromLine },
+            { label: "Transfer", icon: ArrowLeftRight },
+            { label: "Earn", icon: PiggyBank },
+          ].map(({ label, icon: ActionIcon }) => (
+            <button type="button" key={label} className="flex min-h-[76px] flex-col items-center justify-center gap-1.5">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-card text-foreground">
+                <ActionIcon className="h-[19px] w-[19px]" strokeWidth={1.8} />
+              </span>
+              <span className="whitespace-nowrap text-[10px] text-foreground">{label}</span>
+            </button>
+          ))}
         </div>
 
-        {/* Account Tabs */}
-        <div className="flex gap-6 mb-2 border-b border-border">
-          <button
-            onClick={() => setActiveAccountTab("crypto")}
-            className={`min-h-[44px] pb-2 text-[14px] font-semibold ${
-              activeAccountTab === "crypto"
-                ? "text-foreground border-b-2 border-primary -mb-px"
-                : "text-muted-foreground"
-            }`}
+        <Card className="mb-3 rounded-xl border-border/60 bg-card px-3 py-3 shadow-none">
+          <div className="mb-3 flex items-center justify-between">
+            <span className="text-[12px] text-muted-foreground">Allocation</span>
+            <button type="button" aria-label="Allocation options" className="flex min-h-[44px] min-w-[44px] items-center justify-center gap-2 text-muted-foreground">
+              <SlidersHorizontal className="h-[14px] w-[14px]" />
+              <ChevronDown className="h-[14px] w-[14px]" />
+            </button>
+          </div>
+          <div
+            className="flex h-[7px] overflow-hidden rounded-full bg-secondary"
+            role="img"
+            aria-label={`Spot allocation ${spotAllocation.toFixed(0)} percent and Funding allocation ${(100 - spotAllocation).toFixed(0)} percent`}
           >
-            Crypto
-          </button>
-          <button
-            onClick={() => setActiveAccountTab("account")}
-            className={`min-h-[44px] pb-2 text-[14px] font-semibold ${
-              activeAccountTab === "account"
-                ? "text-foreground border-b-2 border-primary -mb-px"
-                : "text-muted-foreground"
-            }`}
-          >
-            Account
-          </button>
-        </div>
+            <span className="h-full bg-[#1877f2]" style={{ width: `${spotAllocation}%` }} />
+            <span className="h-full min-w-[6px] flex-1 bg-primary" />
+          </div>
+        </Card>
 
-        {/* Account List */}
-        <div className="divide-y divide-border/70">
-          <div className="flex items-center justify-between py-4">
-            <span className="text-[13px] text-foreground">Spot</span>
-            <span className="text-foreground text-[13px] font-semibold">${formatBalance(spotBalance)}</span>
+        <Card className="overflow-hidden rounded-xl border-border/60 bg-card px-3 pt-3 shadow-none">
+          <div className="mb-1 flex items-center justify-between">
+            <span className="text-[12px] text-muted-foreground">Balance</span>
+            <button type="button" aria-label="Balance list options" className="flex min-h-[44px] min-w-[44px] items-center justify-center text-muted-foreground">
+              <List className="h-[16px] w-[16px]" />
+            </button>
           </div>
-          <div className="flex items-center justify-between py-4">
-            <span className="text-[13px] text-foreground">Funding</span>
-            <span className="text-foreground text-[13px] font-semibold">${formatBalance(fundingBalance)}</span>
-          </div>
-        </div>
+          {[
+            { label: "Spot", detail: "Spot wallet", balance: spotBalance, Icon: Coins },
+            { label: "Funding", detail: "Funding wallet", balance: fundingBalance, Icon: Wallet },
+          ].map(({ label, detail, balance, Icon }, index) => (
+            <div key={label} className={`flex items-center justify-between gap-2 py-3 ${index === 0 ? "border-b border-border/70" : ""}`}>
+              <div className="flex min-w-0 items-center gap-2">
+                <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${index === 0 ? "bg-[#138F8B]" : "bg-[#2D8AD9]"}`}>
+                  <Icon className="h-[17px] w-[17px] text-white" />
+                </span>
+                <div className="min-w-0">
+                  <div className="text-[12px] font-semibold text-foreground">{label}</div>
+                  <div className="truncate text-[10px] text-muted-foreground">{detail}</div>
+                </div>
+              </div>
+              <div className="flex shrink-0 flex-col items-end gap-1">
+                <span className="text-[12px] font-semibold text-foreground">${formatBalance(balance)}</span>
+                <span className="text-[10px] text-muted-foreground">${formatBalance(balance)}</span>
+                <div className="flex gap-1">
+                  <button type="button" className="min-h-[44px] rounded bg-secondary px-3 text-[10px] text-foreground">Earn</button>
+                  <button type="button" className="min-h-[44px] rounded bg-secondary px-3 text-[10px] text-foreground">Trade</button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </Card>
       </main>
 
       <BottomNav />

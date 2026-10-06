@@ -1,43 +1,19 @@
-import { useState } from "react";
-import { Search } from "lucide-react";
+import { ScanLine, Search } from "lucide-react";
 
 export const SearchBar = () => {
-  const [activeTab, setActiveTab] = useState<"exchange" | "wallet">("exchange");
-
   return (
-    <div className="px-4 pt-3 pb-2">
-      {/* Exchange / Wallet Tabs */}
-        <div className="flex items-center gap-5 mb-2">
-        <button
-          onClick={() => setActiveTab("exchange")}
-          className={`min-h-[40px] text-[15px] font-semibold transition-colors ${
-            activeTab === "exchange"
-              ? "text-foreground"
-              : "text-muted-foreground"
-          }`}
-        >
-          Exchange
-        </button>
-        <button
-          onClick={() => setActiveTab("wallet")}
-          className={`min-h-[40px] text-[15px] font-semibold transition-colors ${
-            activeTab === "wallet"
-              ? "text-foreground"
-              : "text-muted-foreground"
-          }`}
-        >
-          Wallet
-        </button>
-      </div>
-
-      {/* Search input */}
-      <div className="relative flex h-11 items-center bg-secondary/90 rounded-full px-4">
+    <div className="px-3 pb-0.5 pt-0.5">
+      <div className="flex h-11 items-center gap-2 rounded-lg bg-secondary px-3">
+        <Search className="h-[17px] w-[17px] shrink-0 text-muted-foreground" />
         <input
           type="text"
-          placeholder="Binance bStocks Hits $100M"
-          className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none"
+          placeholder="Alphabet shares gain"
+          aria-label="Search"
+          className="min-w-0 flex-1 bg-transparent text-[13px] text-foreground placeholder:text-muted-foreground outline-none"
         />
-        <Search className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+        <button type="button" aria-label="Scan code" className="flex h-11 w-11 shrink-0 items-center justify-center text-muted-foreground">
+          <ScanLine className="h-[18px] w-[18px]" />
+        </button>
       </div>
     </div>
   );

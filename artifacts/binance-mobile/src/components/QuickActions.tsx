@@ -1,10 +1,10 @@
-import { BarChart3, PiggyBank, Trophy, UserPlus, LayoutGrid } from "lucide-react";
+import { BarChart3, PiggyBank, Crown, Gift, LayoutGrid } from "lucide-react";
 
 const quickActions = [
   { icon: BarChart3, label: "Stocks" },
   { icon: PiggyBank, label: "Earn" },
-  { icon: Trophy, label: "Football\nCup" },
-  { icon: UserPlus, label: "Referral" },
+  { icon: Crown, label: "Traders\nLeague" },
+  { icon: Gift, label: "Rewards\nHub" },
   { icon: LayoutGrid, label: "More" },
 ];
 
@@ -14,12 +14,12 @@ export const QuickActions = () => {
       {quickActions.map((action) => (
         <button
           key={action.label}
-          className="flex min-h-[68px] min-w-[58px] flex-col items-center gap-1.5 group"
+          className="group flex min-h-[60px] min-w-[58px] flex-col items-center gap-1"
         >
-          <div className="bg-card border border-border rounded-full p-3 group-hover:bg-muted transition-colors">
+          <div className="flex h-[38px] w-[38px] items-center justify-center rounded-xl bg-secondary transition-colors group-hover:bg-muted">
             <action.icon className="h-[19px] w-[19px] text-foreground" strokeWidth={1.8} />
           </div>
-          <span className="text-[10px] text-center text-muted-foreground whitespace-pre-line leading-tight">
+          <span className="whitespace-pre-line text-center text-[10px] leading-tight text-muted-foreground">
             {action.label}
           </span>
         </button>

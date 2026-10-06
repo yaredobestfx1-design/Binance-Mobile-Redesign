@@ -1,11 +1,22 @@
 import { useState, useEffect } from "react";
-import { Menu, Search, Bell, Headphones, Settings, X } from "lucide-react";
+import {
+  Menu,
+  Search,
+  Bell,
+  Headphones,
+  Settings,
+  X,
+  CircleUserRound,
+  ChartNoAxesCombined,
+  MessagesSquare,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import menuScreen from "@/assets/menu-screen.jpg";
 import binanceLogo from "@/assets/binance-coin-logo.svg";
 
-export const TopBar = () => {
+export const TopBar = ({ variant = "standard" }: { variant?: "standard" | "home" }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [homeTab, setHomeTab] = useState<"exchange" | "wallet">("exchange");
   const [username, setUsername] = useState(() => {
     return localStorage.getItem("username") || "mikooo12";
   });
@@ -24,6 +35,114 @@ export const TopBar = () => {
     setIsEditing(false);
     setIsFocused(false);
   };
+
+  if (variant === "home") {
+    return (
+      <>
+        <header className="sticky top-0 z-50 w-full bg-background/95 pt-[env(safe-area-inset-top)] backdrop-blur-xl">
+          <div className="flex h-[56px] items-center justify-between gap-1 px-2">
+            <div className="flex shrink-0 items-center gap-0.5">
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label="Open profile menu"
+                className="h-11 w-11"
+                onClick={() => setMenuOpen(true)}
+              >
+                <CircleUserRound className="h-[19px] w-[19px]" />
+              </Button>
+              <Button variant="ghost" size="icon" aria-label="Support" className="h-11 w-11">
+                <Headphones className="h-[18px] w-[18px]" />
+              </Button>
+            </div>
+
+            <div
+              role="tablist"
+              aria-label="Account type"
+              className="flex min-w-0 max-w-[148px] flex-1 items-center rounded-lg bg-secondary p-1"
+            >
+              <button
+                role="tab"
+                aria-selected={homeTab === "exchange"}
+                onClick={() => setHomeTab("exchange")}
+                className={`min-h-[44px] flex-1 rounded-md px-2 text-[11px] font-semibold transition-colors ${
+                  homeTab === "exchange" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground"
+                }`}
+              >
+                Exchange
+              </button>
+              <button
+                role="tab"
+                aria-selected={homeTab === "wallet"}
+                onClick={() => setHomeTab("wallet")}
+                className={`min-h-[44px] flex-1 rounded-md px-2 text-[11px] font-semibold transition-colors ${
+                  homeTab === "wallet" ? "bg-card text-foreground shadow-sm" : "text-muted-foreground"
+                }`}
+              >
+                Wallet
+              </button>
+            </div>
+
+            <div className="flex shrink-0 items-center gap-0.5">
+              <Button variant="ghost" size="icon" aria-label="Market activity" className="h-11 w-11">
+                <ChartNoAxesCombined className="h-[18px] w-[18px]" />
+              </Button>
+              <Button variant="ghost" size="icon" aria-label="Messages" className="relative h-11 w-11">
+                <MessagesSquare className="h-[18px] w-[18px]" />
+                <span className="absolute right-0 top-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[9px] font-bold text-primary-foreground">
+                  99+
+                </span>
+              </Button>
+            </div>
+          </div>
+        </header>
+
+        {menuOpen && (
+          <div className="fixed inset-0 z-[100] bg-background pt-[env(safe-area-inset-top)]">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute right-3 top-[calc(env(safe-area-inset-top)+12px)] z-[101] h-11 w-11 rounded-full bg-black/50 text-white hover:bg-black/70"
+              onClick={() => setMenuOpen(false)}
+              aria-label="Close profile menu"
+            >
+              <X className="h-6 w-6" />
+            </Button>
+            <img src={menuScreen} alt="Menu" className="h-full w-full object-cover" />
+            <div
+              className="absolute left-1/2 top-[140px] z-[101] -translate-x-1/2"
+              onMouseEnter={() => setIsFocused(true)}
+              onMouseLeave={() => !isEditing && setIsFocused(false)}
+              onTouchStart={() => setIsFocused(true)}
+            >
+              <div className="relative inline-block">
+                {isEditing ? (
+                  <input
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    onBlur={handleBlur}
+                    autoFocus
+                    className="min-w-[100px] border-b border-white/50 bg-transparent px-2 py-1 text-center text-lg font-semibold text-white outline-none"
+                    maxLength={20}
+                  />
+                ) : (
+                  <span className="px-2 py-1 text-lg font-semibold text-white">{username}</span>
+                )}
+                {isFocused && !isEditing && (
+                  <button
+                    onClick={handleEditClick}
+                    className="absolute -right-3 -top-1 h-2.5 w-2.5 rounded-full bg-[#F0B90B] transition-transform hover:scale-125"
+                    aria-label="Edit username"
+                  />
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+      </>
+    );
+  }
 
   return (
     <>
