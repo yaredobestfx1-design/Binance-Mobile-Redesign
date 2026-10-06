@@ -34,7 +34,10 @@ export const CryptoList = () => {
   const visibleCryptos = showAll ? cryptos : cryptos?.slice(0, 5);
 
   return (
-    <section className="market-section">
+    <section
+      aria-label="Hot crypto pairs"
+      className="market-section mx-3 overflow-hidden rounded-xl border border-border/60 bg-card"
+    >
       <div className="flex gap-5 overflow-x-auto px-3 pb-1 pt-2">
         {marketTabs.map((tab) => (
           <button
@@ -66,7 +69,7 @@ export const CryptoList = () => {
         ))}
       </div>
 
-      <div className="grid grid-cols-[minmax(0,1fr)_82px_68px] gap-1 border-b border-border/70 px-3 py-1.5 text-[10px] text-muted-foreground">
+      <div className="grid grid-cols-[minmax(0,1fr)_minmax(76px,88px)_68px] gap-1 border-b border-border/70 px-3 py-1.5 text-[10px] text-muted-foreground">
         <span>Name</span>
         <span className="text-right">Last Price</span>
         <span className="text-center">24h chg%</span>
@@ -75,7 +78,7 @@ export const CryptoList = () => {
       <div className="divide-y divide-border/70">
         {isLoading ? (
           [...Array(5)].map((_, index) => (
-            <div key={index} className="grid grid-cols-[minmax(0,1fr)_82px_68px] items-center gap-1 px-3 py-1">
+            <div key={index} className="grid min-h-[42px] grid-cols-[minmax(0,1fr)_minmax(76px,88px)_68px] items-center gap-1 px-3 py-1">
               <div className="h-7 w-28 animate-pulse rounded bg-muted" />
               <div className="ml-auto h-7 w-16 animate-pulse rounded bg-muted" />
               <div className="h-7 w-16 animate-pulse rounded bg-muted" />
@@ -90,13 +93,13 @@ export const CryptoList = () => {
           return (
             <div
               key={crypto.id}
-              className="grid grid-cols-[minmax(0,1fr)_82px_68px] items-center gap-1 px-3 py-0.5 transition-colors hover:bg-muted/30"
+              className="grid min-h-[42px] grid-cols-[minmax(0,1fr)_minmax(76px,88px)_68px] items-center gap-1 px-3 py-1 transition-colors hover:bg-muted/30"
             >
               <div className="flex min-w-0 items-center gap-2">
                 {crypto.image ? (
-                  <img src={crypto.image} alt="" className="h-6 w-6 shrink-0 rounded-full bg-secondary" />
+                  <img src={crypto.image} alt="" className="h-5 w-5 shrink-0 rounded-full bg-secondary" />
                 ) : (
-                  <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-secondary text-[11px] font-bold text-primary">
+                  <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-secondary text-[11px] font-bold text-primary">
                     {crypto.symbol.slice(0, 1).toUpperCase()}
                   </div>
                 )}

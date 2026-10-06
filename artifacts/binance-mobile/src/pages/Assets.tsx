@@ -1,11 +1,11 @@
 import { BottomNav } from "@/components/BottomNav";
 import { Button } from "@/components/ui/button";
+import { GramLogo, UsdtLogo } from "@/components/AssetTokenLogos";
 import {
   ArrowDownToLine,
   ArrowLeftRight,
   ArrowUpFromLine,
   ChevronDown,
-  Coins,
   Eye,
   List,
   Minus,
@@ -15,7 +15,6 @@ import {
   Plus,
   SlidersHorizontal,
   Sun,
-  Wallet,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
@@ -315,7 +314,7 @@ const Assets = () => {
           <div
             className="flex h-[7px] overflow-hidden rounded-full bg-secondary"
             role="img"
-            aria-label={`Spot allocation ${spotAllocation.toFixed(0)} percent and Funding allocation ${(100 - spotAllocation).toFixed(0)} percent`}
+            aria-label={`USDT allocation ${spotAllocation.toFixed(0)} percent and Gram allocation ${(100 - spotAllocation).toFixed(0)} percent`}
           >
             <span className="h-full bg-[#1877f2]" style={{ width: `${spotAllocation}%` }} />
             <span className="h-full min-w-[6px] flex-1 bg-primary" />
@@ -330,16 +329,17 @@ const Assets = () => {
             </button>
           </div>
           {[
-            { label: "Spot", detail: "Spot wallet", balance: spotBalance, Icon: Coins },
-            { label: "Funding", detail: "Funding wallet", balance: fundingBalance, Icon: Wallet },
-          ].map(({ label, detail, balance, Icon }, index) => (
-            <div key={label} className={`flex items-center justify-between gap-2 py-3 ${index === 0 ? "border-b border-border/70" : ""}`}>
+            { account: "spot", label: "USDT", detail: "TetherUS", balance: spotBalance, Logo: UsdtLogo },
+            { account: "funding", label: "GRAM", detail: "Gram", badge: "Swapped", balance: fundingBalance, Logo: GramLogo },
+          ].map(({ account, label, detail, badge, balance, Logo }, index) => (
+            <div key={account} className={`flex items-center justify-between gap-2 py-3 ${index === 0 ? "border-b border-border/70" : ""}`}>
               <div className="flex min-w-0 items-center gap-2">
-                <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${index === 0 ? "bg-[#138F8B]" : "bg-[#2D8AD9]"}`}>
-                  <Icon className="h-[17px] w-[17px] text-white" />
-                </span>
+                <Logo className="h-8 w-8 shrink-0" />
                 <div className="min-w-0">
-                  <div className="text-[12px] font-semibold text-foreground">{label}</div>
+                  <div className="flex items-center gap-1">
+                    <span className="text-[12px] font-semibold text-foreground">{label}</span>
+                    {badge && <span className="text-[9px] text-muted-foreground">{badge}</span>}
+                  </div>
                   <div className="truncate text-[10px] text-muted-foreground">{detail}</div>
                 </div>
               </div>

@@ -1,13 +1,12 @@
-import { TrendingUp, ArrowLeftRight, Briefcase, Wallet } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
-import binanceLogo from "@/assets/binance-coin-logo.svg";
+import { BinanceNavIcon, type BinanceNavIconName } from "@/components/BinanceNavIcon";
 
 const navItems = [
-  { icon: null, label: "Home", path: "/", customIcon: binanceLogo },
-  { icon: TrendingUp, label: "Markets", path: "/" + "markets" },
-  { icon: ArrowLeftRight, label: "Trade", path: "/trade" },
-  { icon: Briefcase, label: "Futures", path: "/futures" },
-  { icon: Wallet, label: "Assets", path: "/assets" },
+  { icon: "home", label: "Home", path: "/" },
+  { icon: "markets", label: "Markets", path: "/markets" },
+  { icon: "trade", label: "Trade", path: "/trade" },
+  { icon: "futures", label: "Futures", path: "/futures" },
+  { icon: "assets", label: "Assets", path: "/assets" },
 ];
 
 export const BottomNav = () => {
@@ -21,11 +20,7 @@ export const BottomNav = () => {
             className="flex min-w-0 flex-1 flex-col items-center justify-center gap-1 py-1 px-1 min-h-[54px] text-muted-foreground transition-colors"
             activeClassName="text-primary"
           >
-            {item.customIcon ? (
-            <img src={item.customIcon} alt="" className="home-nav-mark h-[19px] w-[19px]" />
-            ) : (
-              item.icon && <item.icon className="h-[19px] w-[19px]" strokeWidth={1.8} />
-            )}
+            <BinanceNavIcon name={item.icon as BinanceNavIconName} className="h-5 w-5" />
             <span className="text-[10px] font-medium leading-none">{item.label}</span>
           </NavLink>
         ))}

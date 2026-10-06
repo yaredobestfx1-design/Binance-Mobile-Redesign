@@ -109,14 +109,6 @@
 .assets-tabs {
   padding-top: calc(env(safe-area-inset-top, 0px) + 5px);
 }
-.home-nav-mark {
-  filter: grayscale(1);
-  opacity: .56;
-}
-nav a[aria-current="page"] .home-nav-mark {
-  filter: none;
-  opacity: 1;
-}
 .section-kicker {
   font-size: 11px;
   text-transform: uppercase;
