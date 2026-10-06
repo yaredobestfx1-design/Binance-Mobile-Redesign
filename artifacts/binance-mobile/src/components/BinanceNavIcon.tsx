@@ -21,11 +21,11 @@ export const BinanceNavIcon = ({ name, className = "h-5 w-5" }: BinanceNavIconPr
     case "home":
       return (
         <svg {...shared}>
-          <path d="m7 3.8 3.1 3.1L7 10 3.9 6.9 7 3.8Z" />
-          <path d="m17 3.8 3.1 3.1L17 10l-3.1-3.1L17 3.8Z" />
-          <path d="m7 14 3.1 3.1L7 20.2l-3.1-3.1L7 14Z" />
-          <path d="m17 14 3.1 3.1-3.1 3.1-3.1-3.1L17 14Z" />
-          <path d="m12 8.9 3.1 3.1-3.1 3.1L8.9 12l3.1-3.1Z" />
+          <path
+            d="M12 1 15 4 12 7 9 4 12 1ZM4 9 7 12 4 15 1 12 4 9ZM12 9 15 12 12 15 9 12 12 9ZM20 9 23 12 20 15 17 12 20 9ZM12 17 15 20 12 23 9 20 12 17Z"
+            fill="currentColor"
+            stroke="none"
+          />
         </svg>
       );
     case "markets":
