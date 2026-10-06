@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Binance Mobile"
+description = "A Binance-style mobile crypto exchange companion redesigned for the Samsung Galaxy A15, preserving existing local wallet balances, live markets, and app routes."
+version = "1.0.0"
+id = "artifacts/binance-mobile"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21708
+
+[services.development]
+run = "pnpm --filter @workspace/binance-mobile run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/binance-mobile", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/binance-mobile/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21708"
+BASE_PATH = "/"
