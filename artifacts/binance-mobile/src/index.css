@@ -104,7 +104,7 @@
   overflow-x: clip;
 }
 .page-content {
-  padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
 }
 .assets-tabs {
   padding-top: calc(env(safe-area-inset-top, 0px) + 5px);
