@@ -13,11 +13,11 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
 
     const fadeTimer = setTimeout(() => {
       setFadeOut(true);
-    }, 2700);
+    }, 350);
 
     const completeTimer = setTimeout(() => {
       onComplete();
-    }, 3000);
+    }, 650);
 
     return () => {
       clearTimeout(animateTimer);

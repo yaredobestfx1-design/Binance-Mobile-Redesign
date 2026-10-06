@@ -1,0 +1,1 @@
+- [Binance app preservation](binance-app-preservation.md) — visual updates must keep existing wallet persistence, calculations, notifications, market refresh behavior, and routes intact.
