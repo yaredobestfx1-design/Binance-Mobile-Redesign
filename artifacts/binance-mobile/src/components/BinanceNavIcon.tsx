@@ -31,35 +31,34 @@ export const BinanceNavIcon = ({ name, className = "h-5 w-5" }: BinanceNavIconPr
     case "markets":
       return (
         <svg {...shared}>
-          <path d="M4 4.5v15h16" />
-          <path d="m7 15 4-4 3 2 5-6" />
-          <path d="M15.5 7H19v3.5" />
+          <path d="M4 19h16" />
+          <path d="m4.5 15.5 5.2-5.3 3.1 3.1 6.7-7.1" />
+          <path d="M15.5 6.2H20v4.3" />
         </svg>
       );
     case "trade":
       return (
         <svg {...shared}>
-          <path d="M20 7h-5l2.1-2.1" />
-          <path d="M4 17h5l-2.1 2.1" />
-          <path d="M5.4 9A7.2 7.2 0 0 1 17 5l1.6 2" />
-          <path d="M18.6 15A7.2 7.2 0 0 1 7 19l-1.6-2" />
+          <path d="M4.5 10a8 8 0 0 1 13.8-3.3L20.5 9" />
+          <path d="M20.5 5.3V9h-3.7" />
+          <path d="M19.5 14a8 8 0 0 1-13.8 3.3L3.5 15" />
+          <path d="M3.5 18.7V15h3.7" />
         </svg>
       );
     case "futures":
       return (
         <svg {...shared}>
-          <path d="M6 3.5h9l4 4V20H6V3.5Z" />
-          <path d="M15 3.5V8h4" />
-          <path d="M9 12h6M9 15h3" />
-          <path d="m18 17.2 2.1 2.1-2.1 2.1-2.1-2.1 2.1-2.1Z" className="nav-icon-accent" fill="currentColor" stroke="none" />
+          <path d="M5.5 3.5h13v16.7l-2-1.3-2 1.3-2-1.3-2 1.3-2-1.3-2 1.3V3.5Z" />
+          <path d="M8.5 7.5h7.8M8.5 11.2h7.8" />
+          <path d="m19 16.8 2.2 2.2-2.2 2.2-2.2-2.2 2.2-2.2Z" className="nav-icon-accent" fill="currentColor" stroke="none" />
         </svg>
       );
     case "assets":
       return (
         <svg {...shared}>
-          <path d="M4 8V6.2A2.2 2.2 0 0 1 6.2 4H18" />
-          <rect x="4" y="7" width="16" height="13" rx="2" />
-          <path d="M14 12h6v4h-6a2 2 0 0 1 0-4Z" />
+          <path d="M4.5 8V6.2A2.2 2.2 0 0 1 6.7 4h11.8" />
+          <path d="M4.5 8h14a1.8 1.8 0 0 1 1.8 1.8v9.4a1.8 1.8 0 0 1-1.8 1.8h-14a1.8 1.8 0 0 1-1.8-1.8V9.8A1.8 1.8 0 0 1 4.5 8Z" />
+          <path d="M15 12h5.3v4H15a2 2 0 0 1 0-4Z" />
           <path d="m17 10.8 3.2 3.2-3.2 3.2-3.2-3.2 3.2-3.2Z" className="nav-icon-accent" fill="currentColor" stroke="none" />
         </svg>
       );
