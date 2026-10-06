@@ -115,6 +115,9 @@
 nav a[aria-current="page"] .nav-icon-accent {
   fill: hsl(var(--primary));
 }
+nav a.nav-link-home[aria-current="page"] svg {
+  color: hsl(var(--primary));
+}
 .section-kicker {
   font-size: 11px;
   text-transform: uppercase;

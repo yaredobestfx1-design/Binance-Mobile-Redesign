@@ -17,7 +17,10 @@ export const BottomNav = () => {
           <NavLink
             key={item.path}
             to={item.path}
-            className="flex min-w-0 flex-1 flex-col items-center justify-center gap-1 py-1 px-1 min-h-[54px] text-muted-foreground transition-colors"
+            end={item.path === "/"}
+            className={`flex min-w-0 flex-1 flex-col items-center justify-center gap-1 py-1 px-1 min-h-[54px] text-muted-foreground transition-colors ${
+              item.path === "/" ? "nav-link-home" : ""
+            }`}
             activeClassName="text-foreground"
           >
             <BinanceNavIcon name={item.icon as BinanceNavIconName} className="h-5 w-5" />
