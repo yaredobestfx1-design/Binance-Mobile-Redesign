@@ -109,6 +109,12 @@
 .assets-tabs {
   padding-top: calc(env(safe-area-inset-top, 0px) + 5px);
 }
+.nav-icon-accent {
+  fill: currentColor;
+}
+nav a[aria-current="page"] .nav-icon-accent {
+  fill: hsl(var(--primary));
+}
 .section-kicker {
   font-size: 11px;
   text-transform: uppercase;

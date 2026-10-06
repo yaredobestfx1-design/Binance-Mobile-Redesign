@@ -18,7 +18,7 @@ export const BottomNav = () => {
             key={item.path}
             to={item.path}
             className="flex min-w-0 flex-1 flex-col items-center justify-center gap-1 py-1 px-1 min-h-[54px] text-muted-foreground transition-colors"
-            activeClassName="text-primary"
+            activeClassName="text-foreground"
           >
             <BinanceNavIcon name={item.icon as BinanceNavIconName} className="h-5 w-5" />
             <span className="text-[10px] font-medium leading-none">{item.label}</span>

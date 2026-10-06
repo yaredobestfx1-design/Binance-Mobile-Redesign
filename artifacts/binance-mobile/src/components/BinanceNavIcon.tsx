@@ -51,7 +51,7 @@ export const BinanceNavIcon = ({ name, className = "h-5 w-5" }: BinanceNavIconPr
           <path d="M6 3.5h9l4 4V20H6V3.5Z" />
           <path d="M15 3.5V8h4" />
           <path d="M9 12h6M9 15h3" />
-          <path d="m14 18 2-2 2 1" />
+          <path d="m18 17.2 2.1 2.1-2.1 2.1-2.1-2.1 2.1-2.1Z" className="nav-icon-accent" fill="currentColor" stroke="none" />
         </svg>
       );
     case "assets":
@@ -60,7 +60,7 @@ export const BinanceNavIcon = ({ name, className = "h-5 w-5" }: BinanceNavIconPr
           <path d="M4 8V6.2A2.2 2.2 0 0 1 6.2 4H18" />
           <rect x="4" y="7" width="16" height="13" rx="2" />
           <path d="M14 12h6v4h-6a2 2 0 0 1 0-4Z" />
-          <circle cx="16.5" cy="14" r=".55" fill="currentColor" stroke="none" />
+          <path d="m17 10.8 3.2 3.2-3.2 3.2-3.2-3.2 3.2-3.2Z" className="nav-icon-accent" fill="currentColor" stroke="none" />
         </svg>
       );
   }
