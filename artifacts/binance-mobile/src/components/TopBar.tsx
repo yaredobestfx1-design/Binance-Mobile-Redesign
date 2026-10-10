@@ -111,7 +111,6 @@ export const TopBar = ({ variant = "standard" }: { variant?: "standard" | "home"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >
-                  <path d="M7.2 3.3h12.1a1.5 1.5 0 0 1 1.5 1.5v8.6a1.5 1.5 0 0 1-1.5 1.5h-2.6" />
                   <path d="M4.8 6.3h12.1a1.5 1.5 0 0 1 1.5 1.5v7.5a1.5 1.5 0 0 1-1.5 1.5h-4.4l-5.3 3.7v-3.7H4.8a1.5 1.5 0 0 1-1.5-1.5V7.8a1.5 1.5 0 0 1 1.5-1.5Z" />
                   <path d="M7.5 10h6.8M7.5 13h5.2" />
                 </svg>
