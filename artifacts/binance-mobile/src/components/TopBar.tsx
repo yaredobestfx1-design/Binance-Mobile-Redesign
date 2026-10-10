@@ -6,13 +6,13 @@ import {
   Headphones,
   Settings,
   X,
-  CircleUserRound,
   ChartNoAxesCombined,
   MessagesSquare,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import menuScreen from "@/assets/menu-screen.jpg";
 import binanceLogo from "@/assets/binance-coin-logo.svg";
+import profileTrophy from "@/assets/profile-trophy.svg";
 
 export const TopBar = ({ variant = "standard" }: { variant?: "standard" | "home" }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -49,7 +49,7 @@ export const TopBar = ({ variant = "standard" }: { variant?: "standard" | "home"
                 className="h-11 w-11"
                 onClick={() => setMenuOpen(true)}
               >
-                <CircleUserRound className="h-[19px] w-[19px]" />
+                <img src={profileTrophy} alt="" aria-hidden="true" className="h-9 w-9 shrink-0" />
               </Button>
               <Button variant="ghost" size="icon" aria-label="Support" className="h-11 w-11">
                 <Headphones className="h-[18px] w-[18px]" />
