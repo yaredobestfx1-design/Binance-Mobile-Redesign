@@ -40,7 +40,7 @@ export const TopBar = ({ variant = "standard" }: { variant?: "standard" | "home"
       <>
         <header className="sticky top-0 z-50 w-full bg-background/95 pt-[env(safe-area-inset-top)] backdrop-blur-xl">
           <div className="flex h-[56px] items-center justify-between gap-1 px-2">
-            <div className="flex shrink-0 items-center gap-0.5">
+            <div className="flex shrink-0 items-center gap-1">
               <Button
                 variant="ghost"
                 size="icon"
