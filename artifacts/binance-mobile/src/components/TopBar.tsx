@@ -87,7 +87,7 @@ export const TopBar = ({ variant = "standard" }: { variant?: "standard" | "home"
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 48 48"
-                  className="!size-9"
+                  className="h-[18px] w-[18px]"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="3.2"
