@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme inline {
@@ -86,7 +85,7 @@
     margin: 0;
     min-width: 320px;
     min-height: 100dvh;
-    font-family: "DM Sans", "Noto Sans", sans-serif;
+    font-family: "Roboto", "Noto Sans", Arial, sans-serif;
     -webkit-tap-highlight-color: transparent;
     overscroll-behavior-x: none;
   }
