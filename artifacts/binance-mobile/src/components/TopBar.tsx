@@ -6,7 +6,6 @@ import {
   Headphones,
   Settings,
   X,
-  ChartNoAxesCombined,
   MessagesSquare,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -85,7 +84,22 @@ export const TopBar = ({ variant = "standard" }: { variant?: "standard" | "home"
 
             <div className="flex shrink-0 items-center gap-0.5">
               <Button variant="ghost" size="icon" aria-label="Market activity" className="h-11 w-11">
-                <ChartNoAxesCombined className="h-[18px] w-[18px]" />
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 48 48"
+                  className="!size-9"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="34" cy="15.5" r="10" />
+                  <path d="M34 10.8v4.8l3.2 2.1" />
+                  <path d="M30.9 23.6c-.6 2.2-1.8 3.8-3.4 5.1" />
+                  <path d="M6 33.5h16.8c3.4 0 5.4-2 5.4-4.6 0-2.4-1.8-4.1-4.5-4.1h-4.5c-1.7 0-3.2-.5-4.5-1.5l-1.5-1.1c-1.5-1.1-3.5-1.3-5.2-.6L5 22.8" />
+                  <path d="M6 38.5h15c4.4 0 8.2-2.1 10.7-5.7l3.1-4.5" />
+                </svg>
               </Button>
               <Button variant="ghost" size="icon" aria-label="Messages" className="relative h-11 w-11">
                 <MessagesSquare className="h-[18px] w-[18px]" />
