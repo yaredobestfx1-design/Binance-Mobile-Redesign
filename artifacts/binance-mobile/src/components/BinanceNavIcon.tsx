@@ -47,7 +47,7 @@ export const BinanceNavIcon = ({ name, className = "h-5 w-5" }: BinanceNavIconPr
     case "futures":
       return (
         <svg {...shared}>
-          <path d="M6.2 3.5h11.9a.9.9 0 0 1 .9.9v9.3m0 5.1v1.2H6.2a.9.9 0 0 1-.9-.9V4.4a.9.9 0 0 1 .9-.9Z" />
+          <path d="M6.2 3.5h11.9a.9.9 0 0 1 .9.9v9.3M15.2 20H6.2a.9.9 0 0 1-.9-.9V4.4a.9.9 0 0 1 .9-.9Z" />
           <path d="M8.4 7.5h7.8M8.4 11h6.2" />
           <path d="m18.8 15.7 2.8 2.8-2.8 2.8-2.8-2.8 2.8-2.8Z" />
           <path d="m18.8 17.6.9.9-.9.9-.9-.9.9-.9Z" className="nav-icon-accent" fill="currentColor" stroke="none" />
