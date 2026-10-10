@@ -7,6 +7,7 @@ import { ChatPreview } from "@/components/ChatPreview";
 import { FeaturedCoins } from "@/components/FeaturedCoins";
 import { CryptoList } from "@/components/CryptoList";
 import { NewsFeed } from "@/components/NewsFeed";
+import { FloatingDiamond } from "@/components/FloatingDiamond";
 import { Button } from "@/components/ui/button";
 import { Eye, ChevronDown } from "lucide-react";
 import { useState } from "react";
@@ -91,6 +92,7 @@ const Index = () => {
         </main>
       </PullToRefresh>
 
+      <FloatingDiamond />
       <BottomNav />
     </div>
   );
