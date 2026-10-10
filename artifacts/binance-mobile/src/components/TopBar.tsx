@@ -6,7 +6,6 @@ import {
   Headphones,
   Settings,
   X,
-  MessagesSquare,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import menuScreen from "@/assets/menu-screen.jpg";
@@ -87,7 +86,7 @@ export const TopBar = ({ variant = "standard" }: { variant?: "standard" | "home"
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 48 48"
-                  className="h-[18px] w-[18px]"
+                  className="!size-6"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="3.2"
@@ -102,7 +101,20 @@ export const TopBar = ({ variant = "standard" }: { variant?: "standard" | "home"
                 </svg>
               </Button>
               <Button variant="ghost" size="icon" aria-label="Messages" className="relative h-11 w-11">
-                <MessagesSquare className="h-[18px] w-[18px]" />
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  className="!size-6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M7.2 3.3h12.1a1.5 1.5 0 0 1 1.5 1.5v8.6a1.5 1.5 0 0 1-1.5 1.5h-2.6" />
+                  <path d="M4.8 6.3h12.1a1.5 1.5 0 0 1 1.5 1.5v7.5a1.5 1.5 0 0 1-1.5 1.5h-4.4l-5.3 3.7v-3.7H4.8a1.5 1.5 0 0 1-1.5-1.5V7.8a1.5 1.5 0 0 1 1.5-1.5Z" />
+                  <path d="M7.5 10h6.8M7.5 13h5.2" />
+                </svg>
                 <span className="absolute right-0 top-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[9px] font-bold text-primary-foreground">
                   99+
                 </span>
