@@ -9,7 +9,7 @@ import { CryptoList } from "@/components/CryptoList";
 import { NewsFeed } from "@/components/NewsFeed";
 import { FloatingDiamond } from "@/components/FloatingDiamond";
 import { Button } from "@/components/ui/button";
-import { Eye, ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import PullToRefresh from "@/components/PullToRefresh";
 
@@ -47,7 +47,9 @@ const Index = () => {
                 onClick={() => setShowBalance(!showBalance)}
               >
                 Est. Total Value(USD)
-                <Eye className="ml-1 h-[14px] w-[14px]" />
+                <ChevronUp
+                  className={`ml-1 h-4 w-4 transition-transform ${showBalance ? "" : "rotate-180"}`}
+                />
               </Button>
             </div>
             
