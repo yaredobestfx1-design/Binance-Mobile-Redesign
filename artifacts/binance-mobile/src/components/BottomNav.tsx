@@ -23,7 +23,10 @@ export const BottomNav = () => {
             }`}
             activeClassName="text-foreground"
           >
-            <BinanceNavIcon name={item.icon as BinanceNavIconName} className="h-5 w-5" />
+            <BinanceNavIcon
+              name={item.icon as BinanceNavIconName}
+              className={item.icon === "futures" ? "h-6 w-6" : "h-5 w-5"}
+            />
             <span className="text-[10px] font-medium leading-none">{item.label}</span>
           </NavLink>
         ))}
